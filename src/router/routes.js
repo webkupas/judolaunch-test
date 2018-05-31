@@ -13,12 +13,12 @@ const routerOptions = [
     path: '/signup',
     name: 'SignUp',
     component: 'SignUp',
-    // beforeEnter: (to, from, next) => {
-    //   firebaseApp.auth().onAuthStateChanged(user => {
-    //     if (user) next('/')
-    //     else next()
-    //   })
-    // },
+    beforeEnter: (to, from, next) => {
+      firebaseApp.auth().onAuthStateChanged(user => {
+        if (user) next('/')
+        else next()
+      })
+    },
     meta: {
       requiresAuth: false
     }
@@ -39,7 +39,7 @@ const routerOptions = [
   },
   {
     path: '*',
-    name: 'Hi',
+    name: 'Hello',
     component: 'Home',
     beforeEnter: (to, from, next) => {
       firebaseApp.auth().onAuthStateChanged(user => {
